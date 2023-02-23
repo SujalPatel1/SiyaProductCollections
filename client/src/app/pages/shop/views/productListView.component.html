@@ -1,0 +1,59 @@
+﻿
+<div class="row">
+    <div *ngFor="let item of store.products" class="col-md-2">
+        <div div class="card">
+            <div class="card-main">
+                <div *ngIf="item.discountPercentage > 0">
+                    <div class="discount">{{item.discountPercentage}}%</div>
+                </div>
+                <div *ngIf="item.discountPercentage <= 0">
+                    <div class="nodiscount"></div>
+                </div>
+                <div class="product-detail-label">{{item.size}}</div>
+                <div class="image">
+                    <img src="/img/{{item.imageName}}" style="aspect-ratio: 1/1;" class="card-img-top" alt="Image Not Available" />
+                </div>
+
+                <div class="item-title"><a href="">{{item.title}}</a></div>
+                <div *ngIf="item.discountPercentage > 0">
+                    <div class="price">
+                        <span class="price-new">
+                            {{(item.price-(item.price * item.discountPercentage/100)) | currency:"USD" }}
+                        </span>
+                        <span class="price-old">
+                            {{item.price | currency:"USD"}}
+                        </span>
+                    </div>
+                </div>
+                <div *ngIf="item.discountPercentage <= 0">
+                    <div class="price">
+                        <span class="price-new">
+                            {{item.price | currency:"USD" }}
+                        </span>
+                    </div>
+                </div>
+                <div class="cart-line"></div>
+                <div class="cart-item">
+                    <div *ngIf="item.stock > 0">
+                        <ul>
+                            <li><a (click)="store.getProductDetail(item.id)"><i class="fa fa-eye"></i></a></li>
+                            <li><a (click)="store.addToOrder(item)"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div *ngIf="item.stock <= 0">
+                        Item Out of Stock
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="cboxOverlay" *ngIf="store.showProductDetail">
+    <div class="cbox">
+        <div class="cboxTitle">
+            Product Detail
+        </div>
+        <button class="cboxClose" (click)="store.closeProductDetailBox()" type="button"><i class="fa fa-window-close" aria-hidden="true"></i></button>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+﻿
+    <div class="form-box">
+        <h1 class="form-title">Create an Account</h1>
+        <div class="header-title">
+             Shop smarter online by creating an account with us!
+        </div>
+        <div *ngIf="showError" class="alert alert-danger" role="alert" style="text-align: center">
+            <span [innerHTML]="errorMessage"></span>
+        </div>
+        <div *ngIf="showSuccess" class="alert alert-success" role="alert" style="text-align: center">
+            <span [innerHTML]="successMessage"></span>
+        </div>
+        <form [formGroup]="registerForm" autocomplete="off" (ngSubmit)="registerUser(registerForm.value)" class="common-form">
+            <label class="form-label" for="firstName">First Name</label>
+            <input class="form-input" type="text" id="firstName" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f['firstName'].errors }" />
+            <div class="form-error" *ngIf="submitted && f['firstName'].errors">
+                <div *ngIf="f['firstName'].errors['required']">First Name is required</div>
+            </div>
+
+            <label class="form-label" for="lastName">Last Name</label>
+            <input class="form-input" type="text" id="lastName" formControlName="lastName" />
+
+            <label class="form-label" for="email">Email Address</label>
+            <input class="form-input" type="email" id="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+            <div class="form-error" *ngIf="submitted && f['email'].errors">
+                <div *ngIf="f['email'].errors['required']">Email is required</div>
+                <div *ngIf="f['email'].errors['email']">Please provide a valid email</div>
+            </div>
+
+            <label class="form-label" for="password">Password</label>
+            <input class="form-input" type="password" id="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+            <div class="form-error" *ngIf="submitted && f['password'].errors">
+                <div *ngIf="f['password'].errors['required']">Password is required</div>
+                <div *ngIf="f['password'].errors['minlength']">
+                    Password must be at least 7 characters
+                </div>
+                <div *ngIf="f['password'].errors['maxlength']">
+                    Username must not exceed 25 characters
+                </div>
+            </div>
+
+            <label class="form-label" for="confirmPassword">Confirm Password</label>
+            <input class="form-input" type="password" id="confirmPassword" formControlName="confirmPassword" [ngClass]="{ 'is-invalid': submitted && f['confirmPassword'].errors }" />
+            <div class="form-error" *ngIf="submitted && f['confirmPassword'].errors">
+                <div *ngIf="f['confirmPassword'].errors['required']">
+                    Confirm Password is required
+                </div>
+                <div *ngIf="f['confirmPassword'].errors['matching']">
+                    Confirm Password does not match
+                </div>
+            </div>
+            <button class="form-button" type="submit"><i class="fa fa-user-plus"></i> Register</button>
+        </form>
+        <div class="footer-login">
+            <h6>Already have an account?</h6>
+            <a class="btn btn-warning" href="#/login"><i class="fa-solid fa-sign-in"></i> Log In</a>
+        </div>
+    </div>

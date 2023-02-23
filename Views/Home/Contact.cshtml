@@ -1,0 +1,39 @@
+﻿@model ContactViewModel
+@{
+    ViewBag.Title = "Contact Us";
+}
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
+}
+
+<div class="shift-content-below">
+    <div class="form-box">
+        <h1 class="form-title">Contact Us</h1>
+        <form method="post" class="common-form">
+
+            <label class="form-label" style="text-align: center; color:black">Please contact us if you have any questions 
+            or concerns by complete the form below.</label>
+            <br />
+
+            <label class="form-label" asp-for="Name">Your Name:</label>
+            <input class="form-input" asp-for="Name" />
+            <span class="form-error" asp-validation-for="Name"></span>
+
+            <label class="form-label" asp-for="Email">Email:</label>
+            <input class="form-input" type="email" asp-for="Email" />
+            <span class="form-error" asp-validation-for="Email"></span>
+
+            <label class="form-label" asp-for="Subject">Subject:</label>
+            <input class="form-input" type="text" asp-for="Subject" />
+            <span class="form-error" asp-validation-for="Subject"></span>
+
+            <label class="form-label" asp-for="Message">Message:</label>
+            <textarea class="form-textarea" rows="4" asp-for="Message"></textarea>
+            <span class="form-error" asp-validation-for="Message"></span>
+
+            <button class="form-button" type="submit"><i class="fa fa-envelope"></i> Send Message</button> 
+        </form>
+    </div>
+</div>

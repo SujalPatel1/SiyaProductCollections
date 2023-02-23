@@ -1,0 +1,35 @@
+﻿<nav>
+    <div class="menu-icon">
+        <span class="fas fa-bars" (click)="menuIconBtn()"></span>
+    </div>
+    <div class="logo">
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+            <img class="logo-img" src="/img/Siya_Collections_Icon.png" />
+        </a>
+    </div>
+    <div>
+        <ul class="nav-items">
+            <li class="nav-item"><a class="nav-link" [routerLink]="['']"><i class="fa-solid fa-shopping-bag"></i> Shop</a></li>
+            <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+            <li *ngIf='!(LoginStatus | async) as LoginStatus' class="nav-item">
+                <a class="nav-item" *ngIf="LoginStatus" [routerLink]="['login']"><i class="fa-solid fa-sign-in"></i> Login</a>
+            </li>
+            <li *ngIf='!(LoginStatus | async) as LoginStatus' class="nav-item">
+                <a class="nav-item" *ngIf="LoginStatus" [routerLink]="['register']"><i class="fa-solid fa-user-plus"></i> Register</a>
+            </li>
+            <li *ngIf='(LoginStatus | async) as LoginStatus' class="nav-item">
+                <a class="nav-item" *ngIf="LoginStatus" (click)="logout()"><i class="fa-solid fa-sign-out"></i> Logout</a>
+            </li>
+        </ul>
+    </div>
+    <form action="#">
+        <input type="search" class="search-data" placeholder="Search here..." required />
+        <button type="submit" class="fas fa-search"></button>
+    </form>
+    <div class="search-icon" (click)="searchIconBtn()">
+        <span class="fas fa-search"></span>
+    </div>
+    <div class="cancel-icon" (click)="cancelIconBtn()">
+        <span class="fas fa-times"></span>
+    </div>
+</nav>

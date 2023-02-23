@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    @RenderSection("Head", false)
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    @*<header>
+        <nav>
+            <div class="menu-icon">
+                <span class="fas fa-bars"></span>
+            </div>
+            <div class="logo">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                    <img class="logo-img" src="~/img/Siya_Collections_Icon.png" />
+                </a>
+            </div>
+            <div class="nav-items">
+                <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Cart"><i class="fa-solid fa-cart-shopping"></i> Cart(0)</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Shop"><i class="fa-solid fa-shopping-bag"></i> Shop</a></li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Account" asp-action="Logout"><i class="fa-solid fa-sign-out"></i> Logout</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shop#/login"><i class="fa-solid fa-sign-in"></i> Login</a>
+                    </li>
+                }
+            </div>
+            <div class="search-icon">
+                <span class="fas fa-search"></span>
+            </div>
+            <div class="cancel-icon">
+                <span class="fas fa-times"></span>
+            </div>
+            <form action="#">
+                <input type="search" class="search-data" placeholder="Search here..." required />
+                <button type="submit" class="fas fa-search"></button>
+            </form>
+        </nav>
+    </header>*@
+
+    <section>
+        @RenderBody()
+    </section>
+    
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/site.js"></script>
+   
+
+    @RenderSection("Scripts", false)
+</body>
+</html>

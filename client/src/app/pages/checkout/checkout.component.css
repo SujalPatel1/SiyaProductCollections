@@ -1,0 +1,128 @@
+﻿.checkout-thumb {
+    max-width: 100px;
+}
+
+.a-column.a-span-last {
+    float: right;
+}
+
+div.a-column {
+    margin-right: 2%;
+    float: left;
+    min-height: 1px;
+    overflow: visible;
+}
+
+.a-row {
+    width: 100%;
+    padding-left: 3.5%;
+}
+
+.a-spacing-small {
+    margin-bottom: 8px !important;
+}
+
+.a-span3 {
+    width: 20%;
+}
+
+.a-span7 {
+    width: 55%;
+}
+
+.a-span9 {
+    width: 75%;
+}
+
+
+.displayAddress {
+    margin: 0;
+    padding: 0;
+}
+
+.displayAddress li {
+    list-style-type: none;
+}
+
+
+/*td {
+    font-size: 1.1rem;
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    width: 800px;
+    padding: 15px;
+}*/
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+td {
+    width: 20%;
+    font-size: 1.1rem;
+    border-color: inherit;
+    border-style: solid;
+    padding: 10px;
+}
+
+.sub-header {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #1f2893ba;
+}
+
+.main-header {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #8f0a72ba;
+}
+
+.confirm-order-box {
+    background-color: white;
+    padding: 40px 20px;
+    border-radius: 6px !important;
+    box-shadow: 0px 20px 40px rgb(10 33 65 / 5%), 0px 0px 2px rgb(0 0 0 / 13%);
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.order-summary-box {
+    background-color: white;
+    padding: 40px 20px;
+    border-radius: 6px !important;
+    box-shadow: 0px 20px 40px rgb(10 33 65 / 5%), 0px 0px 2px rgb(0 0 0 / 13%);
+    margin-left: auto !important;
+    margin-right: auto !important;
+    position: fixed;
+    max-width: 350px;
+}
+
+@media screen and (max-width: 568px) {
+    .checkout-thumb {
+        max-width: 50px;
+    }
+
+    td {
+        width: 20%;
+        font-size: .8rem;
+        border-color: inherit;
+        border-style: solid;
+        padding: 5px;
+    }
+
+    .sub-header {
+        font-weight: 600;
+        font-size: .9rem;
+        color: #1f2893ba;
+    }
+
+    .main-header {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: #8f0a72ba;
+    }
+
+
+}

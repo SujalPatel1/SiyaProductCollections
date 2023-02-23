@@ -1,0 +1,35 @@
+﻿    <div class="form-box">
+        <h1 class="form-title">User Login</h1>
+        <div class="header-title">
+            Login to your existing SiyaCollections account
+        </div>
+        <div *ngIf="showError" class="alert alert-danger" role="alert" style="text-align: center">
+            <span [innerHTML]="errorMessage"></span>
+        </div>
+        <form class="common-form" [formGroup]="loginForm" autocomplete="off" novalidate (ngSubmit)="loginUser(loginForm.value)">
+            <label class="form-label" for="username">Email Address</label>
+            <input class="form-input" type="text" id="username" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
+            <div class="form-error" *ngIf="submitted && f['username'].errors">
+                <div *ngIf="f['username'].errors['required']">Username is required</div>
+            </div>
+
+            <label class="form-label" for="password">Password</label>
+            <input class="form-input" type="password" id="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+            <div class="form-error" *ngIf="submitted && f['password'].errors">
+                <div *ngIf="f['password'].errors['required']">Password is required</div>
+            </div>
+
+            <div>
+                <input for="RememberMe" type="checkbox" />
+                <label class="form-label" style="margin:5px" for="RememberMe">Remember Me?</label>
+            </div>
+            <div>
+                <button class="form-button" type="submit" style="width:45%"><i class="fa fa-sign-in"></i> Login</button>
+                <button routerLink="/" class="form-button" style="width:45%; margin: 10px; background: #284b9b; border: 1px solid #284b9b;"><i class="fa fa-remove"></i> Cancel</button>
+            </div>
+        </form>
+        <div class="footer-login">
+            <h6>New to SiyaCollections?</h6>
+            <a class="btn btn-warning" href="#/register"><i class="fa-solid fa-user-plus"></i> Register Now </a>
+        </div>
+    </div>

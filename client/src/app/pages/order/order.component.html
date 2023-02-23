@@ -1,0 +1,16 @@
+﻿<div class="row">
+    <table>
+        <tr>
+            <th>Order Placed</th>
+            <th>Order #</th>
+            <th>Order Total</th>
+        </tr>
+        <tr *ngFor="let order of store.userOrders" class="img-thumbnail">
+            <td>{{order.orderDate | date}}</td>
+            <td>{{order.orderNumber}}</td>
+            <td>{{order.orderTotal | currency}}</td>
+            <td>{{store.getAddressInfo(order.addressId)}}</td>
+           
+        </tr>
+    </table>
+</div>

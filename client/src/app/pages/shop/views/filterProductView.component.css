@@ -1,0 +1,17 @@
+﻿.filter-section {
+    padding-bottom: 10px;
+    margin-top: 10px;
+    background: white;
+    box-shadow: 0 20px 40px #0a21410d, 0 0 2px #00000021;
+    padding-top: 10px;
+}
+
+.filter-title {
+    padding-top: 10px;
+    color: #8f0a72ba;
+    padding-bottom: 10px;
+    font-weight: 700;
+    line-height: 1.3em !important;
+    border-bottom: 1px solid lightgray;
+    overflow: hidden;
+}

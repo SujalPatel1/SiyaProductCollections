@@ -1,0 +1,102 @@
+﻿<div class="row justify-content-center">
+    <div class="col-8 confirm-order-box">
+        <div class="a-row a-spacing-small">
+            <h3 class="main-header">Confirm Order</h3>
+            <div *ngIf="store.errorMessage" class="alert alert-danger">{{store.errorMessage}}</div>
+            <hr />
+            <div class="a-column a-span3">
+                <label class="sub-header">Shipping Address:</label>
+            </div>
+            <div class="a-column a-span7">
+                <address-section></address-section>
+            </div>
+            <div class="a-column" style="width: 100%">
+                <hr />
+            </div>
+        </div>
+        <div class="a-row a-spacing-small">
+            <div class="a-column a-span3">
+                <label class="sub-header">Payment Method: </label>
+            </div>
+            <div class="a-column a-span7">
+                
+            </div>
+            <div class="a-column" style="width: 100%">
+                <hr />
+            </div>
+        </div>
+        <div class="a-row a-spacing-small">
+            <div class="a-column a-span3">
+                <label class="sub-header">Promo Code: </label>
+            </div>
+            <div class="a-column a-span7">
+                <coupon-section></coupon-section>
+            </div>
+            <div class="a-column" style="width: 100%">
+                <hr />
+            </div>
+        </div>
+        <div class="a-row a-spacing-small">
+            <div class="a-column a-span3">
+                <label class="sub-header">Review Item(s):</label>
+            </div>
+            <div class="a-column">
+                <br />
+                <table>
+                    <tr *ngFor="let item of store.order.items" class="img-thumbnail">
+                        <td>{{item.productTitle}}</td>
+                        <td style="text-align: center"><img src="/img/{{item.productImageName}}" class="checkout-thumb" alt="Image Not Available" /></td>
+                        <td style="text-align: center">{{ item.productSize}}</td>
+                        <td style="text-align: center">
+                            <label style="border:none">{{ store.getTotalItemPriceBasedOnQty(item.productId) | currency }}</label>
+                        </td>
+                        <td style="text-align: center">
+                            <button style="background: #ffffff;" id="qtyMinusBtn_{{item.productId }}" (click)="store.removeQuantity(item.productId)">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <label class="qty" style="border:none">{{store.getQuantity(item.productId)}}</label>
+                            <button style="background: #ffffff;" id="qtyPlusBtn_{{item.productId }}" (click)="store.addQuantity(item.productId)">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <div>
+                                <button class="delete-Item" (click)="store.deleteItem(item.productId)">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                            <div *ngFor="let product of store.itemLimitMsg | keyvalue">
+                                <div *ngIf="product.key === item.productId" class="itemLimitError">
+                                    {{product.value}}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-3" style="padding: 5px;">
+        <div class="order-summary-box">
+            <h3 class="main-header">Order Summary</h3>
+            <table class="table table-bordered table-condensed">
+                <tr>
+                    <td class="text-right">Items ({{store.order.items.length}}): </td>
+                    <td class="text-right">{{ store.order.subtotal | currency }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right">Shipping: </td>
+                    <td class="text-right">{{ store.order.shippingCost | currency }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right">Sale Tax: </td>
+                    <td class="text-right">$0.00</td>
+                </tr>
+                <tr>
+                    <td class="text-right" style="color: maroon;">Total: </td>
+                    <td class="text-right" style="color: maroon;">{{ store.order.subtotal | currency }}</td>
+                </tr>
+            </table>
+            <button class="btn btn-warning" (click)="onCheckout()"><i class="fas fa-shopping-cart"></i> Place Order</button>
+            <button routerLink="/" class="btn btn-primary" style="margin: 5px;">Continue Shopping</button>
+        </div>
+    </div>
+</div>

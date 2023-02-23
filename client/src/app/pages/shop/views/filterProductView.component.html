@@ -1,0 +1,21 @@
+﻿<div class="row">
+    <div class="filter-section col-11">
+        <label class="filter-title"> Filter By Category </label>
+        <div *ngFor="let category of store.productCategories">
+            <input type="checkbox" id="{{category.categoryName}}" name="{{category.categoryName}}" value="{{category.id}}" (change)="store.updateProductByCategory($event, $any($event.target)?.checked)">
+            <label class="form-label" style="margin:5px"> {{category.categoryName}}</label><br>
+        </div>
+        <label class="filter-title">Filter By Price </label>
+        <div>
+
+        </div>
+        <label class="filter-title">More Options </label>
+        <div>
+            <input type="checkbox" id="OnSale" name="OnSale" value="On-Sale">
+            <label class="form-label" style="margin:5px"> On-sale items only</label><br>
+
+            <input type="checkbox" id="InStock" name="OnSale" value="InStock">
+            <label class="form-label" style="margin:5px"> In-stock items only</label>
+        </div>
+    </div>
+</div>

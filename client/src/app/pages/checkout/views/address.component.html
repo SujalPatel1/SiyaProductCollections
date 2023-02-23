@@ -1,0 +1,107 @@
+﻿<div *ngIf="store.addressList.length > 0">
+    <select #customerAddress class="address-form-input" (change)="store.onAddressSelected(customerAddress.value)">
+        <option value="">
+            ----- Select the name & shipping address -----
+        </option>
+        <option *ngFor="let address of store.addressList" value="{{address.addressId}}">
+            {{address.customerFirstName}} {{address.customerLastName}} - {{address.addressLine1}}, {{address.city }}, {{address.state}}, {{address.zipCode}}
+        </option>
+    </select>
+</div>
+<div class="form-column">
+    <button class="btn btn-link" (click)="store.enableAddressForm=!store.enableAddressForm"><i class="fab fa-wpforms"></i> Address Form</button>
+</div>
+<div *ngIf="store.enableAddressForm">
+    <div *ngIf="showError" class="alert alert-danger form-column" role="alert" style="text-align: center">
+        <span [innerHTML]="errorMessage"></span>
+    </div>
+    <div *ngIf="showSuccess" class="alert alert-success form-column" role="alert" style="text-align: center">
+        <span [innerHTML]="successMessage"></span>
+    </div>
+    <form class="address-form" [formGroup]="addressForm" autocomplete="off" novalidate (ngSubmit)="addAddress(addressForm.value)">
+        <div class="form-column">
+            <span class="input-divider input-spacer">
+                <span>
+                    <label class="form-label" for="customerFirstName">First Name</label>
+                    <input class="address-form-input" type="text" id="customerFirstName" formControlName="customerFirstName" [ngClass]="{ 'is-invalid': submitted && f['customerFirstName'].errors }" />
+                </span>
+                <span class="form-error" *ngIf="submitted && f['customerFirstName'].errors">
+                    <span *ngIf="f['customerFirstName'].errors['required']">First name is required</span>
+                </span>
+            </span>
+            <span class="input-divider">
+                <label class="form-label" for="customerLastName">Last Name</label>
+                <input class="address-form-input" type="text" id="customerLastName" formControlName="customerLastName" />
+            </span>
+        </div>
+        <div class="form-column">
+            <span class="input-nodivider">
+                <span>
+                    <label class="form-label" for="addressLine1">Address Line 1</label>
+                    <input class="address-form-input" type="text" id="addressLine1" formControlName="addressLine1" [ngClass]="{ 'is-invalid': submitted && f['addressLine1'].errors }" />
+                </span>
+                <span class="form-error" *ngIf="submitted && f['addressLine1'].errors">
+                    <span *ngIf="f['addressLine1'].errors['required']">Address Line 1 is required</span>
+                </span>
+            </span>
+        </div>
+        <div class="form-column">
+            <span class="input-nodivider">
+                <span>
+                    <label class="form-label" for="addressLine2">Address Line 2</label>
+                    <input class="address-form-input" type="text" id="addressLine2" formControlName="addressLine2" />
+                </span>
+            </span>
+        </div>
+        <div class="form-column">
+            <span class="input-nodivider">
+                <span>
+                    <label class="form-label" for="city">City</label>
+                    <input class="address-form-input" type="text" id="city" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f['city'].errors }" />
+                </span>
+                <span class="form-error" *ngIf="submitted && f['city'].errors">
+                    <span *ngIf="f['city'].errors['required']">City is required</span>
+                </span>
+            </span>
+        </div>
+        <div class="form-column">
+            <span class="input-divider input-spacer">
+                <span>
+                    <label class="form-label" for="state">State</label>
+                    <select class="address-form-input" id="state" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f['state'].errors }">
+                        <option *ngFor="let state of stateList">{{state.name}} </option>
+                    </select>
+                </span>
+                <span class="form-error" *ngIf="submitted && f['state'].errors">
+                    <span *ngIf="f['state'].errors['required']">State is required</span>
+                </span>
+            </span>
+            <span class="input-divider">
+                <span>
+                    <label class="form-label" for="zipCode">Zip Code</label>
+                    <input class="address-form-input" type="number" id="zipCode" formControlName="zipCode" />
+                </span>
+                <span class="form-error" *ngIf="submitted && f['zipCode'].errors">
+                    <span *ngIf="f['zipCode'].errors['required']">Zip Code is required</span>
+                    <span *ngIf="f['zipCode'].errors['minlength']">
+                        Zip code must consist of atleast 5 digits
+                    </span>
+                </span>
+
+            </span>
+        </div>
+        <div class="form-column">
+            <span class="input-divider input-spacer input-padding">
+                <input formControlName="isPostalAddress" type="checkbox" />
+                <label class="form-label" style="margin:5px" for="isPostalAddress">Make this my default address</label>
+            </span>
+            <span class="input-divider input-padding">
+                <input formControlName="isBillingAddress" type="checkbox" />
+                <label class="form-label" style="margin:5px" for="isBillingAddress">Same address as my billing address</label>
+            </span>
+        </div>
+        <div class="form-column">
+            <button class="btn btn-link" type="submit"><i class="fa fa-plus" aria-hidden="true"></i> Add new address</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,122 @@
+﻿[
+  {
+    "Id": 0,
+    "Title": "Enfamil NeuroPro Baby Formula",
+    "Description": "Provides advanced nutrition to feed your baby.",
+    "Price": 49.99,
+    "DiscountPercentage": 10.00,
+    "Brand": "Enfamil",
+    "Category": "Baby & Child Care",
+    "Size": "36.4oz",
+    "Stock": 1,
+    "ImageName": "3cad8884-116b-4423-9099-1e6ae5a630c6_Enfamil_NeuroPro.png"
+  },
+  {
+    "Id": 0,
+    "Title": "Huggies Baby Diaper Wipes",
+    "Description": "12 flip-top packs of 64 Huggies Natural Care Sensitive Baby Wipes, Unscented (768 wipes total). Are plant-based wipes, made with 99% purified water and 1% skin essential ingredients for a gentle clean.",
+    "Price": 19.99,
+    "DiscountPercentage": 5.00,
+    "Brand": "Huggies",
+    "Category": "Baby & Child Care",
+    "Size": "768 Count",
+    "Stock": 2,
+    "ImageName": "f09de334-1cdd-4a4e-97d0-9a614f587539_Huggies_Baby_Diaper_Wipes.png"
+  },
+  {
+    "id": 0,
+    "Title": "Lucas Oil 10008 Power Steering Fluid - 1 Quart",
+    "Description": "‎It contains mild seal swell agents that condition O-rings and seals to help prevent small leaks­ Maintains smooth power steering operation and helps stop pump squealing.",
+    "Price": 5.99,
+    "DiscountPercentage": 0.00,
+    "Brand": "Lucas",
+    "Category": "Automotive",
+    "Size": "32 Fl Oz",
+    "Stock": 2,
+    "ImageName": "32d3e9c3-2c8a-473e-915a-011e23d3179c_Lucas_Oil_1_Quart.PNG"
+  },
+  {
+    "Id": 0,
+    "Title": "Palmolive Ultra Strength Dishwashing Liquid Dish Soap",
+    "Description": "This item can help you tackle tough messes and make even your dirtiest dishes an easy clean.",
+    "Price": 2.49,
+    "DiscountPercentage": 15.00,
+    "Brand": "Palmolive",
+    "Category": "Household Supplies",
+    "Size": "20 Fl Oz",
+    "Stock": 5,
+    "ImageName": "bf2dfe12-583f-4a42-9755-2de1428267fc_Palmolive_Dish_Soap.png"
+  },
+  {
+    "Id": 0,
+    "Title": "SONGMICS Steel Storage Cabinet with Storage Shelves and Double Doors",
+    "Description": "Black storage cabinet keeps your files, folders and office supplies under control to save your time looking for them, while imbuing a professional ambiance to your home office",
+    "Price": 159.99,
+    "DiscountPercentage": 0.00,
+    "Brand": "SONGMICS",
+    "Category": "Storage",
+    "Size": "31.5”L x 15.7”W x 35.4”H",
+    "Stock": 1,
+    "ImageName": "51247268-5c91-4284-a5f2-a71397e9b84b_Cabinet.PNG"
+  },
+  {
+    "Id": 0,
+    "Title": "Dequadin Orange Anti-Bacteria",
+    "Description": "Dequadin Orange Anti-Bacteria Dequalinium Lozenges",
+    "Price": 8.99,
+    "DiscountPercentage": 5.00,
+    "Brand": "Dequadin",
+    "Category": "Health & Personal Care",
+    "Size": "1 Box of 16",
+    "Stock": 2,
+    "ImageName": "4c16b7dc-e855-43d9-bea2-22b9f39a1c6b_Dequadin_AntiBacterial.PNG"
+  },
+  {
+    "Id": 0,
+    "Title": "Lysol Laundry Sanitizer Additive, Bacteria-Causing Laundry Odor Eliminator",
+    "Description": "Use Lysol Laundry Sanitizer to remove bad smells and sanitize bedding, towels, children’s clothes, baby’s clothes, underwear, gym clothes, pet beds. ELIMINATES 99.9% OF BACTERIA AND VIRUSES",
+    "Price": 11.9900,
+    "DiscountPercentage": 10.00,
+    "Brand": "Lysol",
+    "Category": "Household Supplies",
+    "Size": "90 Fl Oz",
+    "Stock": 3,
+    "ImageName": "3ad142e6-fefc-4560-ac09-de6c71961a15_Lysol-Laundry-sanitizer.png"
+  },
+  {
+    "Id": 0,
+    "Title": "One A Day Men’s Multivitamin Gummies",
+    "Description": "Contains key nutrients like Vitamins A, B12, B6, C, D, E, Folic Acid, Biotin, Pantothenic Acid, Iodine, Zinc, and Selenium. Adults and children 12 years of age and older: Fully chew two gummies daily.",
+    "Price": 7.9900,
+    "DiscountPercentage": 0.00,
+    "Brand": "One A Day",
+    "Category": "Health & Personal Care",
+    "Size": "80 Count",
+    "Stock": 5,
+    "ImageName": "865e7e62-cd0e-4cc6-ab06-8d35ff3958ca_OneADay-Men_s-Multivitamin.png"
+  },
+  {
+    "Id": 0,
+    "Title": "STP Power Steering Fluid & Stop Leak",
+    "Description": "STP Power Steering Fluid + Stop Leak is specially formulated to stop or reduce fluid loss caused by seals that leak due to wear or shrinkage (not for use with broken or scored seals). ",
+    "Price": 6.9900,
+    "DiscountPercentage": 10.00,
+    "Brand": "STP",
+    "Category": "Automotive",
+    "Size": "12 fl oz",
+    "Stock": 3,
+    "ImageName": "882aacb3-add0-4f0d-8cd3-cf16773d7f06_STP_Power-Steering-Fluid.png"
+  },
+  {
+    "Id": 0,
+    "Title": "Tide Hygienic Clean Heavy 10X Duty Laundry Detergent Liquid Soap",
+    "Description": "Designed to clean fabrics down to the microscopic level, Tide hygienic clean heavy 10x duty liquid laundry detergent removes both visible and invisible dirt from your garments, giving you a clean you can trust.",
+    "Price": 15.9900,
+    "DiscountPercentage": 5.00,
+    "Brand": "Tide",
+    "Category": "Household Supplies",
+    "Size": "92 Fl Oz",
+    "Stock": 1,
+    "ImageName": "a9b689b7-1045-420f-95c7-59749891cda9_Tide_59_Loads.png"
+  }
+]

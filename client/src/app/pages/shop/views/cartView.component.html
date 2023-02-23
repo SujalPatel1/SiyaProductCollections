@@ -1,0 +1,43 @@
+﻿
+<div *ngIf="store.order.items.length > 0" class="cart col-2">
+    <strong>Subtotal</strong> <br />
+    <div class="cart-header">
+        {{ store.order.subtotal | currency }}
+    </div>
+    <div class="cart-subheader">
+        <button class="btn btn-warning" routerLink="checkout">
+            <i class="fa-solid fa-shopping-cart"></i>
+            <span id="btn-text"> Checkout</span>
+           
+        </button>
+    </div>
+    <div class="cart-line"></div>
+    <div class="cart-content col-2">
+        <div *ngFor="let item of store.order.items?.slice()?.reverse()" class="cart-content-item">
+            <img src="/img/{{item.productImageName}}" class="img-fluid product-thumb" alt="Image Not Available" />
+            <div class="cart-content-price">
+                {{item.unitPrice | currency }}
+            </div>
+            <div>
+                <button class="qty-minus" id="qtyMinusBtn_{{item.productId }}" (click)="store.removeQuantity(item.productId)">
+                    <i class="fa-solid fa-minus"></i>
+                </button>
+                <label class="qty">{{ store.getQuantity(item.productId) }}</label>
+                <button class="qty-plus" id="qtyPlusBtn_{{item.productId }}" (click)="store.addQuantity(item.productId)">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+            <div *ngFor="let product of store.itemLimitMsg | keyvalue">
+                <div *ngIf="product.key === item.productId" class="itemLimitError">
+                    {{product.value}}
+                </div>
+            </div>
+            <div>
+                <button class="delete-Item" (click)="store.deleteItem(item.productId)">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </div>
+            <div class="cart-line"></div>
+        </div>
+    </div>
+</div>

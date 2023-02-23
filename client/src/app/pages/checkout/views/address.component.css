@@ -1,0 +1,46 @@
+﻿.address-form {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+}
+
+.address-form-input {
+    height: 30px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #c0ccda;
+    border-radius: 4px;
+    display: inline-flex;
+    margin: 0.25rem 0;
+    max-width: 100%;
+    width: 100%
+}
+
+.form-column {
+    display: flex;
+    padding-left: 10px;
+}
+.input-padding {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.input-nodivider {
+    width: 100%;
+}
+.input-divider {
+    width: 50%;
+}
+.input-spacer {
+    margin-right: 15px;
+}
+
+@media screen and (max-width: 768px) {
+    .form-label {
+        font-size: 11px;
+        letter-spacing: -0.009em;
+        margin-bottom: 5px;
+        color: #084298;
+    }
+}

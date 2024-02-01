@@ -1,7 +1,7 @@
 ﻿
 <div class="row">
     <div *ngFor="let item of store.products" class="col-md-2">
-        <div div class="card">
+        <div class="card">
             <div class="card-main">
                 <div *ngIf="item.discountPercentage > 0">
                     <div class="discount">{{item.discountPercentage}}%</div>
@@ -51,9 +51,37 @@
 
 <div class="cboxOverlay" *ngIf="store.showProductDetail">
     <div class="cbox">
-        <div class="cboxTitle">
-            Product Detail
+
+        <div class="cboxProductImg">
+            <div class="card">
+                <div class="image">
+                    <img src="/img/{{store.viewProduct.imageName}}" style="aspect-ratio: 1/1;" class="card-img-top" alt="Image Not Available" />
+                </div>
+            </div>
         </div>
-        <button class="cboxClose" (click)="store.closeProductDetailBox()" type="button"><i class="fa fa-window-close" aria-hidden="true"></i></button>
-    </div>
+        <div class="cboxProductDetail">
+            <div class="item-title"><a href="">{{store.viewProduct.title}}</a></div>
+            <div *ngIf="store.viewProduct.discountPercentage > 0">
+                <div class="price">
+                    Price:
+                    <span class="price-new">
+                        {{(store.viewProduct.price-(store.viewProduct.price * store.viewProduct.discountPercentage/100)) | currency:"USD" }}
+                    </span>
+                    <span class="price-old">
+                        {{store.viewProduct.price | currency:"USD"}}
+                    </span>
+                </div>
+            </div>
+            <div *ngIf="store.viewProduct.discountPercentage <= 0">
+                <div class="price">
+                    Price:
+                    <span class="price-new">
+                        {{store.viewProduct.price | currency:"USD" }}
+                    </span>
+                </div>
+            </div>
+            <div class="line"></div>
+        </div>
+            <button class="cboxClose" (click)="store.closeProductDetailBox()" type="button"><i class="fa fa-window-close" aria-hidden="true"></i></button>
+        </div>
 </div>

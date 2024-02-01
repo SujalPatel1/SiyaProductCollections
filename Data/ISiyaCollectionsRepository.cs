@@ -9,6 +9,9 @@ namespace SiyaProductCollections.Data
         IEnumerable<Product> GetAllProducts();
         IEnumerable<Product> GetProductsByCatagory(string catagoryIds);
         IEnumerable<Product> GetProductsByTitle(string title);
+        Product GetProductById(int id);
+        bool UpdateProduct(int id, Product updatedProduct);
+        bool DeleteProduct(int id);
         IEnumerable<Category> GetAllCategories();
         
         IEnumerable<Order> GetAllOrders(bool includeItems);

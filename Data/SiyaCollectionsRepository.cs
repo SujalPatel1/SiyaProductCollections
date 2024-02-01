@@ -177,10 +177,58 @@ namespace SiyaProductCollections.Data
         {
             return _context.Products.Where(p => p.Title.Contains(title)).ToList();
         }
+        public Product GetProductById(int id)
+        {
+            return _context.Products.Where(p => p.Id == id).FirstOrDefault();
+        }
 
         public bool SaveAll()
         {
             return _context.SaveChanges() > 0;
+        }
+
+        public bool UpdateProduct(int id, Product updatedProduct)
+        {
+            try
+            {
+                _logger.LogInformation("UpdateProduct was called");
+                var existingProduct = _context.Products.Where(o => o.Id == id).FirstOrDefault();
+                if (existingProduct != null)
+                {
+                    existingProduct.Title = updatedProduct.Title;
+                    existingProduct.ImageName = updatedProduct.ImageName;
+                    existingProduct.Price = updatedProduct.Price;
+                    existingProduct.Size = updatedProduct.Size;
+                    existingProduct.Stock = updatedProduct.Stock;
+                    existingProduct.Description = updatedProduct.Description;
+                    existingProduct.DiscountPercentage = updatedProduct.DiscountPercentage;
+                    existingProduct.Category = updatedProduct.Category;
+                    existingProduct.Brand = updatedProduct.Brand;
+                    _context.SaveChanges();
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to update product: {ex}");
+                return false;
+            }
+        }
+
+        public bool DeleteProduct(int id)
+        {
+            _logger.LogInformation("DeleteProduct was called");
+            var existingProduct = _context.Products.Where(o => o.Id == id).FirstOrDefault();
+            if (existingProduct != null)
+            {
+                _context.Remove(existingProduct);
+                _context.SaveChanges();
+                return true;
+            }
+            else
+                return false;
         }
     }
 }

@@ -17,6 +17,7 @@ export class Store {
     itemLimitMsg = new Map<number, string>();
     products: Product[] = [];
     userOrders: Order[] = [];
+    viewProduct!: any;
 
     selectedProductCategories = new Map<string, boolean>();
     productCategories: Category[] = [];
@@ -30,8 +31,14 @@ export class Store {
     constructor(private http: HttpClient) { }
 
     getProductDetail(productId: number) {
-        console.log("" + productId);
         this.showProductDetail = true;
+        let urlLink = "api/products/getProductById/" + productId;
+
+        return this.http.get(urlLink)
+            .pipe(map(data => {
+                this.viewProduct = data;
+                return;
+            })).subscribe();
     }
 
     closeProductDetailBox() {
@@ -193,6 +200,8 @@ export class Store {
         if (objWithIdIndex > -1) {
             this.order.items.splice(objWithIdIndex, 1);
             localStorage.setItem("cart-item", JSON.stringify(this.order.items));
+            // Remove the disabled attribute
+            this.disableAddBtn(productId, "", false);
         }
     }
     addToOrder(product: Product) {

@@ -16,6 +16,15 @@ export class Register implements OnInit {
     public showError!: boolean;
     public showSuccess!: boolean;
     public successMessage!: string;
+    public fieldTextType!: boolean;
+    public confirmPasswordfieldTextType!: boolean
+
+    toggleFieldTextType() {
+        this.fieldTextType = !this.fieldTextType;
+    }
+    toggleConfirmPasswordFieldTextType() {
+        this.confirmPasswordfieldTextType = !this.confirmPasswordfieldTextType;
+    }
 
     registerForm: FormGroup = new FormGroup({
         firstName: new FormControl(''),

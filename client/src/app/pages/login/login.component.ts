@@ -12,6 +12,12 @@ import { LoginRequest, LoginResponse } from "../../shared/Login";
 })
 export class Login implements OnInit {
 
+    fieldTextType!: boolean;
+
+    toggleFieldTextType() {
+        this.fieldTextType = !this.fieldTextType;
+    }
+
     errorMessage: string = '';
     showError!: boolean;
 
@@ -31,6 +37,9 @@ export class Login implements OnInit {
             }
         );
     }
+
+    get password(): any { return this.loginForm.get('password'); }
+    clearPassword() { this.password.reset(); }
 
     get f(): { [key: string]: AbstractControl } {
         return this.loginForm.controls;
@@ -61,6 +70,7 @@ export class Login implements OnInit {
                 },
                 error: (err: HttpErrorResponse) => {
                     this.errorMessage = err.message;
+                    this.clearPassword();
                     this.showError = true;
                 }
             });

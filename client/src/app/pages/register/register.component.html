@@ -10,25 +10,58 @@
         <div *ngIf="showSuccess" class="alert alert-success" role="alert" style="text-align: center">
             <span [innerHTML]="successMessage"></span>
         </div>
+       
+
         <form [formGroup]="registerForm" autocomplete="off" (ngSubmit)="registerUser(registerForm.value)" class="common-form">
             <label class="form-label" for="firstName">First Name</label>
-            <input class="form-input" type="text" id="firstName" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f['firstName'].errors }" />
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                        <i class="fa fa-user" aria-hidden="true" style="line-height: 1.5"></i>
+                    </span>
+                </div>
+                <input class="form-control" type="text" id="firstName" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f['firstName'].errors }" />
+            </div>
             <div class="form-error" *ngIf="submitted && f['firstName'].errors">
                 <div *ngIf="f['firstName'].errors['required']">First Name is required</div>
             </div>
 
             <label class="form-label" for="lastName">Last Name</label>
-            <input class="form-input" type="text" id="lastName" formControlName="lastName" />
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                        <i class="fa fa-user" aria-hidden="true" style="line-height: 1.5"></i>
+                    </span>
+                </div>
+                <input class="form-control" type="text" id="lastName" formControlName="lastName" />
+            </div>
 
             <label class="form-label" for="email">Email Address</label>
-            <input class="form-input" type="email" id="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                        <i class="fa fa-envelope" style="line-height: 1.5"></i>
+                    </span>
+                </div>
+                <input class="form-control" type="email" id="email" placeholder="example@mail.com" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+            </div>
             <div class="form-error" *ngIf="submitted && f['email'].errors">
                 <div *ngIf="f['email'].errors['required']">Email is required</div>
                 <div *ngIf="f['email'].errors['email']">Please provide a valid email</div>
             </div>
 
             <label class="form-label" for="password">Password</label>
-            <input class="form-input" type="password" id="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+            <div class="input-group">
+                <input class="form-control" [type]="fieldTextType ? 'text' : 'password'" id="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+                <div class="input-group-append">
+                    <span class="input-group-text" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                        <i class="fa" [ngClass]="{
+                          'fa-eye-slash': !fieldTextType,
+                          'fa-eye': fieldTextType
+                        }" (click)="toggleFieldTextType()" style="line-height: 1.5"></i>
+                    </span>
+                </div>
+            </div>
             <div class="form-error" *ngIf="submitted && f['password'].errors">
                 <div *ngIf="f['password'].errors['required']">Password is required</div>
                 <div *ngIf="f['password'].errors['minlength']">
@@ -40,7 +73,17 @@
             </div>
 
             <label class="form-label" for="confirmPassword">Confirm Password</label>
-            <input class="form-input" type="password" id="confirmPassword" formControlName="confirmPassword" [ngClass]="{ 'is-invalid': submitted && f['confirmPassword'].errors }" />
+            <div class="input-group">
+                <input class="form-control" [type]="confirmPasswordfieldTextType ? 'text' : 'password'" formControlName="confirmPassword" [ngClass]="{ 'is-invalid': submitted && f['confirmPassword'].errors }" />
+                <div class="input-group-append">
+                    <span class="input-group-text" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                        <i class="fa" [ngClass]="{
+                          'fa-eye-slash': !confirmPasswordfieldTextType,
+                          'fa-eye': confirmPasswordfieldTextType
+                        }" (click)="toggleConfirmPasswordFieldTextType()" style="line-height: 1.5"></i>
+                    </span>
+                </div>
+            </div>
             <div class="form-error" *ngIf="submitted && f['confirmPassword'].errors">
                 <div *ngIf="f['confirmPassword'].errors['required']">
                     Confirm Password is required

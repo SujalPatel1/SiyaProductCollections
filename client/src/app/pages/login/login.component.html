@@ -7,14 +7,32 @@
             <span [innerHTML]="errorMessage"></span>
         </div>
         <form class="common-form" [formGroup]="loginForm" autocomplete="off" novalidate (ngSubmit)="loginUser(loginForm.value)">
-            <label class="form-label" for="username">Email Address</label>
-            <input class="form-input" type="text" id="username" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
+
+            <label class="form-label" for="username">Email address</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                        <i class="fa fa-envelope" style="line-height: 1.5"></i>
+                    </span>
+                </div>
+                <input class="form-control" type="text" id="username" placeholder="example@mail.com" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
+            </div>
             <div class="form-error" *ngIf="submitted && f['username'].errors">
-                <div *ngIf="f['username'].errors['required']">Username is required</div>
+                <div *ngIf="f['username'].errors['required']">Email is required</div>
             </div>
 
             <label class="form-label" for="password">Password</label>
-            <input class="form-input" type="password" id="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+            <div class="input-group">
+                <input class="form-control" [type]="fieldTextType ? 'text' : 'password'" id="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+                <div class="input-group-append">
+                    <span class="input-group-text" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                        <i class="fa" [ngClass]="{
+                          'fa-eye-slash': !fieldTextType,
+                          'fa-eye': fieldTextType
+                        }" (click)="toggleFieldTextType()" style="line-height: 1.5"></i>
+                    </span>
+                </div>
+            </div>
             <div class="form-error" *ngIf="submitted && f['password'].errors">
                 <div *ngIf="f['password'].errors['required']">Password is required</div>
             </div>

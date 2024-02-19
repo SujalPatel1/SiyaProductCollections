@@ -87,7 +87,7 @@ export class Store {
         }
     }
 
-    getOrders() {
+    getOrders(): Observable<void> {
         return this.http.get<[]>("api/orders")
             .pipe(map(data => {
                 this.userOrders = data;
@@ -135,15 +135,6 @@ export class Store {
         if (addressInfo) {
             this.order.addressId = addressInfo.addressId;
         }
-    }
-
-    getAddressInfo(address_Id: number) {
-        this.getUserAddress();
-        var addressInfo = this.addressList.find(p => p.addressId === address_Id);
-        if (addressInfo) {
-            return addressInfo.customerFirstName;
-        }
-        return "";
     }
 
     public order: Order = new Order();

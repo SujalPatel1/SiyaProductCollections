@@ -19,6 +19,6 @@ namespace SiyaProductCollections.Models
         public string ProductDescription { get; set; }
         public decimal ProductPrice { get; set; }
         public decimal ProductDiscountPercentage { get; set; }
-
+        public string ProductImageName { get; set; }
     }
 }

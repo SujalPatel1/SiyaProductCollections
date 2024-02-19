@@ -17,6 +17,7 @@ namespace SiyaProductCollections.Data
         IEnumerable<Order> GetAllOrders(bool includeItems);
         IEnumerable<Order> GetAllOrdersByUser(string username, bool includeItems);
         Order GetOrderById(string username, int id);
+        bool UpdateOrderStatus(int id, Order updateOrder);
         IEnumerable<Address> GetAddressListByUser(string username);
         bool SaveAll();
         void AddEntity(object model);

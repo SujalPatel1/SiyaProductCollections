@@ -13,5 +13,7 @@ export class OrderPage implements OnInit {
     ngOnInit(): void {
         this.store.getOrders()
             .subscribe(); // Kicks off the operation
+        this.store.getUserAddress()
+            .subscribe(); // Kicks off the operation
     }
 }

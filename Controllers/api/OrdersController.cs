@@ -105,5 +105,30 @@ namespace SiyaProductCollections.Controllers
             }
             return BadRequest("Failed to save new order");
         }
+
+        [HttpPut("{id}")]
+        [Authorize(Roles = "Administrator")]
+        public IActionResult Put(int id, [FromBody] OrderViewModel model)
+        {
+            // Update the Product in the Database
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var updatedOrder = _mapper.Map<OrderViewModel, Order>(model);
+                    if (_repository.UpdateOrderStatus(id, updatedOrder))
+                        return Ok();
+                    else
+                        return NotFound();
+                }
+                else
+                    return BadRequest(ModelState);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to update order: {ex}");
+                return BadRequest("Failed to update order");
+            }
+        }
     }
 }

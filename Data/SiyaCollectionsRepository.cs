@@ -230,5 +230,23 @@ namespace SiyaProductCollections.Data
             else
                 return false;
         }
+
+        public bool UpdateOrderStatus(int id, Order updateOrder)
+        {
+            var existingOrder = _context.Orders
+                    .Include(o => o.Items)
+                    .ThenInclude(o => o.Product)
+                    .Where(o => o.Id == id)
+                    .FirstOrDefault();
+
+            if (existingOrder != null)
+            {
+                existingOrder.OrderStatusId = updateOrder.OrderStatusId;
+                _context.SaveChanges();
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }

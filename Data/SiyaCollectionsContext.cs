@@ -21,6 +21,7 @@ namespace SiyaProductCollections.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<Address> Address { get; set; }
         public DbSet<Category> Category { get; set; }
+        public DbSet<OrderStatus> OrderStatus { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

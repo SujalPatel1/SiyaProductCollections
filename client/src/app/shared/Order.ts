@@ -14,6 +14,11 @@ export class OrderItem {
     productSize!: string;
 }
 
+export class OrderStatus {
+    id!: number;
+    name!: string;
+}
+
 export class Order {
     orderId!: number;
     orderDate: Date = new Date();
@@ -23,6 +28,7 @@ export class Order {
     items: OrderItem[] = new Array<OrderItem>();
     address!: Address;
     addressId: number = 0;
+    orderStatus!: OrderStatus;
 
     get shippingCost(): number {
         if (this.subtotal > 50) {

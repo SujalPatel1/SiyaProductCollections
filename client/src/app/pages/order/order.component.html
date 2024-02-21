@@ -3,25 +3,19 @@
         <h3>Order History</h3>
         <div class="col-lg-10">
             <div *ngFor="let order of store.userOrders" style="background-color: rgb(255, 255, 255); border-radius: 4px; margin: 16px 0px; padding: 12px;">
-                <div class="orderImpInfo">{{order.orderDate | date}}</div>
-                <div class="orderInfo">Order# {{order.orderNumber}}</div>
-                <div class="orderInfo">Total: {{order.orderTotal | currency}}</div>
-                <!--<div style="color: rgb(51, 51, 51) !important; font-weight: bold; line-height: 1.25; font-size: 16px; ">
-                    Order Status:
-                </div>-->
-                <div *ngFor="let item of order.items" class="productItems">
-                    <div class="productImg">
-                        <div class="productImg-main">
-                            <div *ngIf="item.quantity > 1" class="quantity">
-                                {{item.quantity}}
-                            </div>
-                            <img src="/img/{{item.productImageName}}" style="min-width: 50px; width: 75px; height: 75px;" alt="Image Not Available" />
-                            </div>
-                        </div>
+                <div class="addSpaceBetween">
+                    <div class="orderImpInfo">{{order.orderDate | date}}</div>
+                    <a href="">View order</a>
                 </div>
-
-                <!--<div *ngFor="let addressInfo of store.addressList">
+                <div class="addSpaceBetween">
+                    <div class="orderInfo"><b>Order Number: </b>{{order.orderNumber}}</div>
+                    <div class="orderInfo"><b>Total: </b>{{order.orderTotal | currency}}</div>
+                </div>
+                <div class="orderInfo"><b>Order Status: </b>{{order.orderStatus.name}}</div>
+                <br />
+                <div class="orderInfo" *ngFor="let addressInfo of store.addressList">
                     <div *ngIf="addressInfo.addressId == order.addressId">
+                        <b>Ship To</b><br />
                         {{addressInfo.customerFirstName}}
                         {{addressInfo.customerLastName}}
                         <br />
@@ -30,8 +24,15 @@
                         {{addressInfo.city}},
                         {{addressInfo.zipCode}}
                     </div>
-                </div>-->
-
+                </div>
+                <div *ngFor="let item of order.items" class="productItems">
+                    <div class="productImg">
+                        <div *ngIf="item.quantity > 1" class="quantity">
+                            {{item.quantity}}
+                        </div>
+                        <img src="/img/{{item.productImageName}}" class="imgTemplate" alt="Image Not Available" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>

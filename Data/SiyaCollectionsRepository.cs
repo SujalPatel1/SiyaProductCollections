@@ -84,6 +84,7 @@ namespace SiyaProductCollections.Data
                     return _context.Orders
                       .Include(o => o.Items)
                       .ThenInclude(o => o.Product)
+                      .OrderByDescending(o => o.OrderDate)
                       .ToList();
                 }
                 else
@@ -106,10 +107,17 @@ namespace SiyaProductCollections.Data
 
                 if (includeItems)
                 {
+
+                    var orderStatus = (from o in _context.Orders
+                                   join os in _context.OrderStatus on o.OrderStatusId equals os.Id
+                                   where o.User.UserName == username
+                                   select new { o, os }).ToList();
+
                     return _context.Orders
                       .Where(o => o.User.UserName == username)
                       .Include(o => o.Items)
                       .ThenInclude(o => o.Product)
+                      .OrderByDescending(o => o.OrderDate)
                       .ToList();
                 }
                 else

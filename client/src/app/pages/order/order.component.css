@@ -4,7 +4,7 @@
 }
 .orderInfo {
     color: rgb(102, 102, 102) !important;
-    font-size: 14px !important;
+    font-size: 15px !important;
 }
 .productItems {
     display: inline-block;
@@ -13,25 +13,29 @@
 .productImg {
     transition: all .2s ease-in-out 0s;
     border-radius: 3px;
+    padding-top: 10px;
 }
 
-.productImg-main {
-    position: relative;
-    padding-top: 5px;
+.imgTemplate {
+    min-width: 50px;
+    width: 75px;
+    height: 75px;
+}
+
+.addSpaceBetween {
+    display: flex;
+    -webkit-box-pack: justify !important;
+    justify-content: space-between !important;
 }
 
 .quantity {
-    background: rgba(0, 0, 0, .54);
-    z-index: 3;
+    background: #424242;
     position: relative;
     font-size: 12px;
     color: #fff;
     text-align: center;
-    display: block;
     width: 20px;
-    height: 20px;
     border-radius: 10px;
-    line-height: 20px;
     font-style: italic;
     right: -55px;
     top: 75px;

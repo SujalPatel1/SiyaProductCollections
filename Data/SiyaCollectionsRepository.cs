@@ -133,6 +133,7 @@ namespace SiyaProductCollections.Data
             }
         }
 
+
         public IEnumerable<Product> GetAllProducts()
         {
             try

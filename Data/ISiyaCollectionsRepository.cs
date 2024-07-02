@@ -7,7 +7,8 @@ namespace SiyaProductCollections.Data
     public interface ISiyaCollectionsRepository
     {
         IEnumerable<Product> GetAllProducts();
-        IEnumerable<Product> GetProductsByCatagory(string catagoryIds);
+        IEnumerable<Product> SortProductsByPrice(string priceCatagory, string catagoryIds);
+        IEnumerable<Product> GetProductsByCatagory(string catagoryIds, string priceCatagory);
         IEnumerable<Product> GetProductsByTitle(string title);
         Product GetProductById(int id);
         bool UpdateProduct(int id, Product updatedProduct);

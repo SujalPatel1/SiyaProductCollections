@@ -19,6 +19,8 @@ export class Store {
     userOrders: Order[] = [];
     viewProduct!: any;
 
+    selected = -1;
+    filterBy: string = 'priceLowToHigh';
     selectedProductCategories = new Map<string, boolean>();
     productCategories: Category[] = [];
     categoryIds!: string;
@@ -53,8 +55,55 @@ export class Store {
             }));
     }
 
+    sortProductByPrice(event: any, i: number) {
+        this.selected = i;
+        if (!event.target.checked) {
+            this.selected = -1;
+        }
+       
 
-    updateProductByCategory(event: Event, checked: boolean) {
+        if (this.selected == 0)
+            this.filterBy = 'priceLowToHigh';
+        else
+            this.filterBy = 'priceHighToLow';
+
+        if (this.selectedProductCategories.size > 0) {
+            this.selectedProductCategories.forEach((value: boolean, key: string) => {
+                if (value == true && this.selectedProductCategories.size == 1) {
+                    this.categoryIds = key;
+                } else if (value == true && this.selectedProductCategories.size > 1) {
+                    this.categoryIds += key + ",";
+                }
+            });
+        }
+
+        if (this.categoryIds != "" && this.selectedProductCategories.size > 0) {
+            const lastCommaRemoved = Array.from(new Set(this.categoryIds.split(','))).toString().replace(/,*$/, '');
+            let urlLink = "api/products/sortProductsByPrice/" + this.filterBy + "/" + lastCommaRemoved;
+            return this.http.get<[]>(urlLink)
+                .pipe(map(data => {
+                    this.products = data;
+                    return;
+                })).subscribe();
+        } else {
+            let urlLink = "api/products/sortProductsByPrice/" + this.filterBy;
+            if (event.target.checked == true) {
+                return this.http.get<[]>(urlLink)
+                    .pipe(map(data => {
+                        this.products = data;
+                        return;
+                    })).subscribe();
+            } else {
+                return this.http.get<[]>("api/products")
+                    .pipe(map(data => {
+                        this.products = data;
+                        return;
+                    })).subscribe();
+            }
+        }
+    }
+
+    updateProductByCategory(event: Event, checked: boolean) {       
         const filterCategoryId = (event.target as HTMLInputElement).value;
         this.selectedProductCategories.set(filterCategoryId, checked);
         this.categoryIds = "";
@@ -71,13 +120,23 @@ export class Store {
 
         if (this.categoryIds != "") { 
             const lastCommaRemoved = this.categoryIds.replace(/,*$/, '');
-            let urlLink = "api/products/getProductByCatagoryIds/" + lastCommaRemoved;
-            
-            return this.http.get<[]>(urlLink)
-                .pipe(map(data => {
-                    this.products = data;
-                    return;
-                })).subscribe();
+
+            if (this.selected != -1) {
+                let urlLink = "api/products/getProductByCatagoryIds/" + lastCommaRemoved + "/" + this.filterBy;
+                return this.http.get<[]>(urlLink)
+                    .pipe(map(data => {
+                        this.products = data;
+                        return;
+                    })).subscribe();
+            }
+            else {
+                let urlLink = "api/products/getProductByCatagoryIds/" + lastCommaRemoved;
+                return this.http.get<[]>(urlLink)
+                    .pipe(map(data => {
+                        this.products = data;
+                        return;
+                    })).subscribe();
+            }
         } else {
             return this.http.get<[]>("api/products")
                 .pipe(map(data => {

@@ -166,19 +166,60 @@ namespace SiyaProductCollections.Data
             }
         }
 
-        public IEnumerable<Product> GetProductsByCatagory(string catagoryIds)
+        public IEnumerable<Product> GetProductsByCatagory(string catagoryIds, string priceCatagory = null)
         {
             IEnumerable<Product> productList;
             List<Product> list = new List<Product>();
 
-            string[] catagoryList = catagoryIds.Split(",");
-            foreach (string id in catagoryList) 
-            {
-                int categoryId = int.Parse(id);
-                _context.Products.Where(p => p.Category.Id == categoryId).ToList().ForEach(p => list.Add(p)); 
+            if (priceCatagory != null) {
+                string[] catagoryList = catagoryIds.Split(",");
+                foreach (string id in catagoryList)
+                {
+                    int categoryId = int.Parse(id);
+                    _context.Products.Where(p => p.Category.Id == categoryId).ToList().ForEach(p => list.Add(p));
+                }
+                if (priceCatagory.Equals("priceLowToHigh"))
+                    return list.OrderBy(p => p.Price).ToList();
+                else
+                    return list.OrderByDescending(p => p.Price).ToList();
             }
-            productList = list.ToList();
-            return productList;
+            else
+            {
+                string[] catagoryList = catagoryIds.Split(",");
+                foreach (string id in catagoryList)
+                {
+                    int categoryId = int.Parse(id);
+                    _context.Products.Where(p => p.Category.Id == categoryId).ToList().ForEach(p => list.Add(p));
+                }
+                productList = list.ToList();
+                return productList;
+            }
+        }
+
+        public IEnumerable<Product> SortProductsByPrice(string priceCatagory, string catagoryIds = null)
+        {
+            if (catagoryIds != null)
+            {
+                string[] catagoryList = catagoryIds.Split(",");
+                List<Product> list = new List<Product>();
+                foreach (string id in catagoryList)
+                {
+                    int categoryId = int.Parse(id);
+                    _context.Products.Where(p => p.Category.Id == categoryId).ToList().ForEach(p => list.Add(p));
+                }
+
+                if (priceCatagory.Equals("priceLowToHigh"))
+                    return list.OrderBy(p => p.Price).ToList();
+                else
+                    return list.OrderByDescending(p => p.Price).ToList();
+            }
+            else
+            {
+                if (priceCatagory.Equals("priceLowToHigh"))
+                    return _context.Products.OrderBy(p => p.Price).ToList();
+                else
+                    return _context.Products.OrderByDescending(p => p.Price).ToList();
+            }
         }
 
         public IEnumerable<Product> GetProductsByTitle(string title)

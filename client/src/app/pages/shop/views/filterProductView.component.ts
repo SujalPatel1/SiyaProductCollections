@@ -16,5 +16,5 @@ export class FilterProductView implements OnInit {
             .subscribe();
     }
 
-
+    sortByOptions = ['Price: Low To High', 'Price: High To Low'];
 }

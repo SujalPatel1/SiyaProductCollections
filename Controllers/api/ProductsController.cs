@@ -72,12 +72,12 @@ namespace SiyaProductCollections.Controllers
             }
         }
 
-        [HttpGet("getProductByCatagoryIds/{categoryIds}")]
-        public IActionResult GetProductByCatagoryIds(string categoryIds)
+        [HttpGet("getProductByCatagoryIds/{categoryIds}/{priceCategory?}")]
+        public IActionResult GetProductByCatagoryIds(string categoryIds, string priceCategory)
         {
             try
             {
-                return Ok(_respository.GetProductsByCatagory(categoryIds));
+                return Ok(_respository.GetProductsByCatagory(categoryIds, priceCategory));
             }
             catch (Exception ex)
             {
@@ -85,7 +85,21 @@ namespace SiyaProductCollections.Controllers
                 return BadRequest("Failed to get products by categoryId");
             }
         }
-       
+
+        [HttpGet("sortProductsByPrice/{priceCategory}/{categoryIds?}")]
+        public IActionResult SortProductsByPrice(string priceCategory, string categoryIds = null)
+        {
+            try
+            {
+                return Ok(_respository.SortProductsByPrice(priceCategory, categoryIds));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to sort products by price : {ex}");
+                return BadRequest("Failed to sort products by price");
+            }
+        }
+
         [HttpPost]
         [Authorize(Roles = "Administrator")]
         public IActionResult Post([FromForm] ProductViewModel model)

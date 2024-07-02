@@ -5,9 +5,10 @@
             <input type="checkbox" id="{{category.categoryName}}" name="{{category.categoryName}}" value="{{category.id}}" (change)="store.updateProductByCategory($event, $any($event.target)?.checked)">
             <label class="form-label" style="margin:5px"> {{category.categoryName}}</label><br>
         </div>
-        <label class="filter-title">Filter By Price </label>
-        <div>
-
+        <label class="filter-title">Sort By</label>
+        <div *ngFor="let item of sortByOptions;  let i = index">
+            <input type="radio" id="{{item}}" name="{{item}}" value="{{i}}" [checked]="store.selected === i" (change)="store.sortProductByPrice($event,i)">
+            <label class="form-label" style="margin:5px" for="{{item}}"> {{item}}</label><br />
         </div>
         <label class="filter-title">More Options </label>
         <div>

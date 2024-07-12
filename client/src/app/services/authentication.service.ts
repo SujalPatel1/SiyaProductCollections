@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
 import { BehaviorSubject, map, Subject } from 'rxjs';
-import router from '../router';
 import { LoginRequest, LoginResponse } from '../shared/Login';
+import { Product } from '../shared/Product';
 import { RegisterRequest, RegisterResponse } from '../shared/Register';
 
 @Injectable({
@@ -66,6 +66,10 @@ export class AuthenticationService {
 
     public registerUser = (userInfo: RegisterRequest) => {
         return this.http.post<RegisterResponse>("/account/register", userInfo);
+    }
+
+    public addProduct = (productInfo: any) => {
+        return this.http.post<Product>("/api/products", productInfo);
     }
 
     public logout = () => {

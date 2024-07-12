@@ -24,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FooterComponent } from './footer/footer.component';
 import { FilterProductView } from './pages/shop/views/filterProductView.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FilterProductView } from './pages/shop/views/filterProductView.componen
         CouponView,
         OrderPage,
         FooterComponent,
-        FilterProductView
+        FilterProductView,
+        AdminComponent
   ],
   imports: [
       BrowserModule,

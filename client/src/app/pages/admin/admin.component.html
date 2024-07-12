@@ -1,0 +1,40 @@
+﻿<div class="form-box">
+    <h1 class="form-title">Add Product</h1>
+    <div class="header-title">
+       Below is the way to add new products to SiyaCollections!
+    </div>
+    <div *ngIf="showError" class="alert alert-danger" role="alert" style="text-align: center">
+        <span [innerHTML]="errorMessage"></span>
+    </div>
+    <div *ngIf="showSuccess" class="alert alert-success" role="alert" style="text-align: center">
+        <span [innerHTML]="successMessage"></span>
+    </div>
+    <form [formGroup]="productForm" autocomplete="off" (ngSubmit)="registerProduct(productForm.value)" class="common-form">
+
+        <label class="form-label" for="title">Title</label>
+        <input class="form-control" type="text" id="title" formControlName="title" [ngClass]="{ 'is-invalid': submitted && f['title'].errors }" />
+        <div class="form-error" *ngIf="submitted && f['title'].errors">
+            <div *ngIf="f['title'].errors['required']">Product Title is required</div>
+        </div>
+
+        <label class="form-label" for="price">Price</label>
+        <input class="form-control" type="number" id="price" formControlName="price" [ngClass]="{ 'is-invalid': submitted && f['price'].errors }" />
+        <div class="form-error" *ngIf="submitted && f['price'].errors">
+            <div *ngIf="f['price'].errors['required']">Product Price is required</div>
+        </div>
+
+        <label class="form-label" for="stock">Quantity In Stock</label>
+        <input class="form-control" type="number" id="stock" formControlName="stock" [ngClass]="{ 'is-invalid': submitted && f['stock'].errors }" />
+        <div class="form-error" *ngIf="submitted && f['stock'].errors">
+            <div *ngIf="f['stock'].errors['required']">Product Quantity In Stock is required</div>
+        </div>
+
+        <label class="form-label" for="description">Description</label>
+        <input class="form-control" type="text" id="description" formControlName="description" />
+
+        <label class="form-label" for="formFile">Upload Product Image</label>
+        <input type="file" class="form-control" id="formFile" formControlName="formFile" (change)="imageUpload($event)"/>
+
+        <button class="form-button" type="submit"><i class="fa fa-user-plus"></i> Add Product</button>
+    </form>
+</div>

@@ -20,6 +20,9 @@ namespace SiyaProductCollections.Data
              .ForMember(o => o.ProductId, ex => ex.MapFrom(o => o.Id))
              .ReverseMap();
 
+            CreateMap<ProductViewModel, Product>()
+                .ForMember(o => o.Category, ex => ex.Ignore());
+
             CreateMap<UserViewModel, User>()
              .ForMember(u => u.UserName, opt => opt.MapFrom(x => x.Email))
              .ReverseMap();

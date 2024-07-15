@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
+﻿
 namespace SiyaProductCollections.Data.Entities
 {
     public class Product
@@ -16,6 +10,7 @@ namespace SiyaProductCollections.Data.Entities
         public decimal DiscountPercentage { get; set; }
         public string Brand { get; set; }
         public Category Category { get; set; }
+        public int CategoryId { get; set; }
         public string Size { get; set; }
         public int Stock { get; set; }
         public string ImageName { get; set; }

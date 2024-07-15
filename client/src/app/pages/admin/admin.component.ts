@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
+import { Store } from '../../services/store.services';
 
 @Component({
     selector: "admin-page",
@@ -14,7 +15,7 @@ export class AdminComponent {
     public showError!: boolean;
     public showSuccess!: boolean;
 
-    file: any; // Variable to store file 
+    file: any = ''; // Variable to store file 
     formData = new FormData();
 
     imageUpload(event: any) {
@@ -25,8 +26,13 @@ export class AdminComponent {
         title: new FormControl(''),
         price: new FormControl(''),
         stock: new FormControl(''),
+        categoryId: new FormControl(''),
         description: new FormControl(''),
-        image: new FormControl('')
+        brand: new FormControl(''),
+        size: new FormControl(''),
+        discountPercentage: new FormControl(''),
+        image: new FormControl(''),
+        formFile: new FormControl('')
     });
     submitted = false;
 
@@ -34,16 +40,25 @@ export class AdminComponent {
         return this.productForm.controls;
     }
 
-    constructor(private authService: AuthenticationService, private formBuilder: FormBuilder, private http: HttpClient) { } 
+    constructor(private authService: AuthenticationService, private formBuilder: FormBuilder, private http: HttpClient, public store: Store) { } 
 
     ngOnInit(): void {
+        
+        this.store.getProductCategories()
+            .subscribe();
+
         this.productForm = this.formBuilder.group(
             {
                 title: ['', [Validators.required]],
                 price: ['', [Validators.required]],
                 stock: ['', [Validators.required]],
-                image: [''],
+                categoryId: ['', [Validators.required]],
+                discountPercentage: [''],
+                brand: [''],
+                size: [''],
                 description: [''],
+                image: [''],
+                formFile: ['']
             }
         );
     }
@@ -61,8 +76,14 @@ export class AdminComponent {
         this.formData.append('Title', formValues.title);
         this.formData.append('Description', formValues.description);
         this.formData.append('Price', formValues.price);
-        this.formData.append('stock', formValues.stock);
-        this.formData.append("Image", this.file, this.file.name);
+        this.formData.append('CategoryId', formValues.categoryId)
+        this.formData.append('Stock', formValues.stock);
+        this.formData.append('DiscountPercentage', formValues.discountPercentage);
+        this.formData.append('Size', formValues.size);
+        this.formData.append('Brand', formValues.brand);
+        if (this.file != '') {
+            this.formData.append("Image", this.file, this.file.name);
+        }
 
         this.authService.addProduct(this.formData)
             .subscribe({

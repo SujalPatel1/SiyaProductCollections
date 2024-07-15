@@ -1,2 +1,2 @@
 # SiyaProductCollections
-Ecommerce Web application to buy/sell products using Angular 15, .NET Core, Web API and Entity Framework, Microsoft SQL Server.
+Developed Ecommerce Web application that allows customers to browse & buy products using Angular 15, .NET Core, Web API, Entity Framework, and Microsoft SQL Server.

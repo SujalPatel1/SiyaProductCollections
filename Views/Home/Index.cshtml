@@ -1,17 +1,18 @@
 ﻿@model IEnumerable<Product>
 @{
-    ViewBag.Title = "";
+    ViewBag.Title = "Home Page";
 }
-@section Scripts {
-    <script src="~/client/polyfills.js"></script>
-    <script src="~/client/runtime.js"></script>
-    <script src="~/client/main.js"></script>
-}
-@section Head {
-    <base href="/shop" />
-    <link href="~/client/styles.css" rel="stylesheet" />
-    <link href="~/client/styles.css" rel="stylesheet" />
-} 
-<the-shop></the-shop>
 
+<div class="row shift-content-below">
+    <div class="col-md-4">
+        <img src="~/img/Free_Shipping_on_All_Orders_Over_$50.png" />
+    </div>
+    <div class="col-md-4">
+        <h5>SHOP BY CATEGORY</h5>
+    </div>
+    <div class="col-md-4">
+        <h5>BEST SELLING PRODUCTS</h5>
+    </div>
+</div>
+      
 

@@ -266,6 +266,34 @@ namespace SiyaProductCollections.Data
             }
         }
 
+        public bool UpdateProductQuantityInStock(int productId, int orderQuantity)
+        {
+            try
+            {
+                _logger.LogInformation("UpdateProductQuantityInStock was called");
+                var existingProduct = _context.Products.Where(o => o.Id == productId).FirstOrDefault();
+                if (existingProduct != null)
+                {
+                    int remainingQuantityInStock = existingProduct.Stock - orderQuantity;
+                    if (remainingQuantityInStock >= 0)
+                    {
+                        existingProduct.Stock = remainingQuantityInStock;
+                        _context.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to update product quantity in stock: {ex}");
+                return false;
+            }
+        }
+
+
         public bool DeleteProduct(int id)
         {
             _logger.LogInformation("DeleteProduct was called");

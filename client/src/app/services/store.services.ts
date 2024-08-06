@@ -292,6 +292,10 @@ export class Store {
         localStorage.removeItem("cart-item");
     }
     checkout() {
+        this.order.items.forEach((item: OrderItem) => {
+            return this.http.put("/api/products/UpdateProductQuantityInStock/" + item.productId + "/" + item.quantity, "").subscribe();
+        });
+
         //const headers = new HttpHeaders().set("Authorization", `Bearer ${this.token}`);
         this.order.orderStatusId = 1;
         this.order.orderTotal = this.order.subtotal + this.order.shippingCost;

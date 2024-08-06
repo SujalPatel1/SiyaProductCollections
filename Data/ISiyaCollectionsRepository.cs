@@ -12,6 +12,7 @@ namespace SiyaProductCollections.Data
         IEnumerable<Product> GetProductsByTitle(string title);
         Product GetProductById(int id);
         bool UpdateProduct(int id, Product updatedProduct);
+        bool UpdateProductQuantityInStock(int productId, int orderQuantity);
         bool DeleteProduct(int id);
         IEnumerable<Category> GetAllCategories();
         

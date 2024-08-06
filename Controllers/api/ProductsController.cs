@@ -174,6 +174,25 @@ namespace SiyaProductCollections.Controllers
             }
         }
 
+        
+        [HttpPut("UpdateProductQuantityInStock/{productId:int}/{orderQuantity:int}")]
+        [Authorize(Roles = "Administrator,Viewer")]
+        public IActionResult PutProductQuantityInStock(int productId, int orderQuantity)
+        {
+            // Update the Product in the Database
+            try
+            {
+                if (_respository.UpdateProductQuantityInStock(productId, orderQuantity))
+                    return Ok();
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to update product quantity in stock: {ex}");
+                return BadRequest("Failed to update product quantity in stock");
+            }
+        }
         private string UploadImage(ProductViewModel model)
         {
             string uploadFolder = Path.Combine(_env.WebRootPath, "img");
